@@ -35,6 +35,11 @@ void get_command_output(const char *command, char *output, size_t size)
     }
 }
 
+void print_section(const char* title, const char* value)
+{
+    printf("%s%-30s: %s\n", random_color(), title, value);
+}
+
 int main()
 {
     srand(time(NULL));
@@ -84,51 +89,47 @@ int main()
     get_command_output("sudo dmidecode -s system-manufacturer", system_manufacturer, sizeof(system_manufacturer));
     get_command_output("sudo dmidecode -s system-product-name", system_product_name, sizeof(system_product_name));
     /*------------------------------------------------------------------------------------------------------------------*/
-    printf("%s", ascii_art);
-    printf("%sHostname: %s", random_color(), hostname);
-    printf("%sOperating System: %s", random_color(), os);
-    printf("%sOperating System Version: %s", random_color(), os_version);
-    printf("%sCPU: %s", random_color(), cpu);
-    printf("%sCPU Core Count: %s", random_color(), cpu_cores);
-    printf("%sTotal Memory: %s", random_color(), total_memory);
-    printf("%sUsed Memory: %s", random_color(), used_memory);
-    printf("%sFree Memory: %s", random_color(), free_memory);
-    printf("%sMemory Percentage: %s%%\n", random_color(), memory_percentage);
-    printf("%sDisk Total: %s", random_color(), disk_total);
-    printf("%sDisk Used: %s", random_color(), disk_used);
-    printf("%sDisk Free: %s", random_color(), disk_free);
-    printf("%sDisk Percentage: %s\n", random_color(), disk_percentage);
-    printf("%sUptime: %s", random_color(), uptime);
-    printf("%sLoad Average: %s\n", random_color(), load_average);
-    printf("%sKernel: %s", random_color(), kernel);
-    printf("%sArchitecture: %s", random_color(), architecture);
-    printf("%sShell: %s", random_color(), shell);
-    printf("%sFull Hostname: %s", random_color(), hostname_full);
-    printf("%sUser Name: %s", random_color(), user_name);
-    printf("%sIPv4: %s", random_color(), ipv4);
-    printf("%sIPv6: %s", random_color(), ipv6);
-    printf("%sInstalled Packages Count: %s\n", random_color(), packages_installed);
-    printf("%sPackage Manager: %s\n", random_color(), package_manager);
-    printf("%sCurrent Directory: %s", random_color(), current_directory);
-    printf("%sTerminal: %s", random_color(), terminal);
-    printf("%sProcessor Flags: %s", random_color(), processor_flags);
-    printf("%sTotal Swap: %s", random_color(), swap_total);
-    printf("%sUsed Swap: %s", random_color(), swap_used);
-    printf("%sFree Swap: %s", random_color(), swap_free);
-    printf("%sSwap Percentage: %s%%\n", random_color(), swap_percentage);
-    printf("%sCPU MHz: %s\n", random_color(), cpu_mhz);
-    printf("%sVirtual Memory: %s%%\n", random_color(), virtual_memory);
-    printf("%sTotal Swap: %s", random_color(), total_swap);
-    printf("%sUsed Swap: %s", random_color(), used_swap);
-    printf("%sFree Swap: %s", random_color(), free_swap);
-    printf("%sDisk I/O: %s\n", random_color(), disk_io);
-    printf("%sNetwork Interfaces: %s\n", random_color(), network_interfaces);
-    printf("%sTimezone: %s\n", random_color(), ttimezone);
-    printf("%sLocale: %s\n", random_color(), locale);
-    printf("%sGraphics Card: %s", random_color(), graphics_card);
-    printf("%sScreen Resolution: %s", random_color(), screen_resolution);
-    printf("%sSystem Manufacturer: %s", random_color(), system_manufacturer);
-    printf("%sSystem Product Name: %s", random_color(), system_product_name);
+    printf("%s\n", ascii_art);
+    printf("%s=== System Information ===\n", random_color());
+    print_section("Hostname", hostname);
+    print_section("Operating System", os);
+    print_section("OS Version", os_version);
+    print_section("CPU", cpu);
+    print_section("CPU Cores", cpu_cores);
+    print_section("Total Memory", total_memory);
+    print_section("Used Memory", used_memory);
+    print_section("Free Memory", free_memory);
+    print_section("Memory Percentage", memory_percentage);
+    print_section("Disk Total", disk_total);
+    print_section("Disk Used", disk_used);
+    print_section("Disk Free", disk_free);
+    print_section("Disk Percentage", disk_percentage);
+    print_section("Uptime", uptime);
+    print_section("Load Average", load_average);
+    print_section("Kernel", kernel);
+    print_section("Architecture", architecture);
+    print_section("Shell", shell);
+    print_section("User Name", user_name);
+    print_section("IPv4", ipv4);
+    print_section("IPv6", ipv6);
+    print_section("Installed Packages Count", packages_installed);
+    print_section("Current Directory", current_directory);
+    print_section("Terminal", terminal);
+    print_section("Processor Flags", processor_flags);
+    print_section("Total Swap", total_swap);
+    print_section("Used Swap", used_swap);
+    print_section("Free Swap", free_swap);
+    print_section("Swap Percentage", swap_percentage);
+    print_section("CPU MHz", cpu_mhz);
+    print_section("Virtual Memory", virtual_memory);
+    print_section("Disk I/O", disk_io);
+    print_section("Network Interfaces", network_interfaces);
+    print_section("Timezone", ttimezone);
+    print_section("Locale", locale);
+    print_section("Graphics Card", graphics_card);
+    print_section("Screen Resolution", screen_resolution);
+    print_section("System Manufacturer", system_manufacturer);
+    print_section("System Product Name", system_product_name);
 
     //
     // Reset terminal
@@ -138,3 +139,15 @@ int main()
 
     return 0;
 }
+
+
+/*
+ *                          02/10/24
+ * Enhanced system information output formatting in sysinfo.c
+ *
+ * - Added structured section headers for better readability.
+ * - Created a `print_section` function to standardize the display of system info.
+ * - Improved alignment and spacing for a cleaner visual presentation.
+ * - Ensured consistent use of colors for terminal output.
+ *
+*/
