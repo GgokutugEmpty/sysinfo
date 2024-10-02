@@ -8,13 +8,18 @@ SRCS = sysinfo.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(TARGET) install
+PREFIX = /usr/local/bin
+
+all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+install: $(TARGET)
+	install -m 755 $(TARGET) $(PREFIX)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
