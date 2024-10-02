@@ -31,7 +31,10 @@ Follow these simple steps to get SysInfo up and running on your system:
    ```bash
    ./sysinfo
    ```
-
+4. **Install(optional)**:
+   ```bash
+   sudo make install
+   ```
 ## ⚙️ Dependencies
 - `gcc` (GNU Compiler Collection)
 - Access to common shell commands (like `uname`, `lscpu`, `free`, `df`, etc.)
