@@ -7,21 +7,31 @@ File : sysinfo.c
 #include <stdlib.h>
 #include <time.h>
 #include "var.h"
+
 const char* random_color()
 {
     static const char* colors[] =
     {
-        "\033[31m", // Red
-        "\033[32m", // Green
-        "\033[33m", // Yellow
-        "\033[34m", // Blue
-        "\033[35m", // Magenta
-        "\033[36m", // Cyan
-        "\033[37m"  // White
+        "\033[0;31m",  // Red
+        "\033[0;32m",  // Green
+        "\033[0;33m",  // Yellow
+        "\033[0;34m",  // Blue
+        "\033[0;35m",  // Magenta
+        "\033[0;36m",  // Cyan
+        "\033[0;37m",  // White
+        "\033[1;31m",  // Bright Red
+        "\033[1;32m",  // Bright Green
+        "\033[1;33m",  // Bright Yellow
+        "\033[1;34m",  // Bright Blue
+        "\033[1;35m",  // Bright Magenta
+        "\033[1;36m",  // Bright Cyan
+        "\033[1;37m",  // Bright White
+        "\033[0m"      // Reset to default color
     };
 
     return colors[rand() % (sizeof(colors) / sizeof(colors[0]))];
 }
+
 void get_command_output(const char *command, char *output, size_t size)
 {
     FILE *fp = popen(command, "r");
@@ -149,5 +159,11 @@ int main()
  * - Created a `print_section` function to standardize the display of system info.
  * - Improved alignment and spacing for a cleaner visual presentation.
  * - Ensured consistent use of colors for terminal output.
+ *
+*/
+
+/*
+ *                          27/10/24
+ * - Color update.
  *
 */
